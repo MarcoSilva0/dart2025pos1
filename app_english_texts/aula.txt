@@ -1,0 +1,1061 @@
+Table of Contents
+1. Resolução
+1.1. Contador de carreiras
+2. Aula 3
+2.1. Km/l
+3. Aula 4
+3.1. Mostrando dados da Internet
+3.2. Cotação do dólar
+4. Pacote html
+5. Prática
+6. Split
+7. Prática
+8. Wrap
+9. Prática
+10. Interações
+11. Exercício English
+12. Envio
+1. Resolução
+Aula 2:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Center(
+	  child: Container(
+	    height: 50,
+	    width: 100,
+	    color: Colors.red,
+	  ),
+	),
+      ),
+    );
+  }
+}  
+Usando Column() e máximo possível de largura:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Column(
+	  children: [
+	    Container(
+	      height: 80, // total:
+	      width: double.infinity,
+	      color: Colors.red,
+	    ),
+	    Container(
+	      height: 80 * 2.5, // total:
+	      width: double.infinity,
+	      color: Colors.purple,
+	    ),
+	  ],
+	),
+      ),
+    );
+  }
+}
+Terminar o Layout:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Column(
+	  children: [
+	    Container(
+	      height: 80, // total:
+	      width: double.infinity,
+	      color: Colors.red,
+	    ),
+	    Padding(
+	      padding: const EdgeInsets.all(8.0),
+	      child: Container(
+		height: 80 * 2.0, // total:
+		width: double.infinity,
+		color: Colors.purple,
+	      ),
+	    ),
+	    Container(
+	      height: 80 * 1.0, // total:
+	      width: double.infinity,
+	      color: Colors.green,
+	    ),
+	    Row(
+	      children: [
+		Padding(
+		  padding: const EdgeInsets.all(5.0),
+		  child: Container(
+		    height: 120 * 1.0, // total:
+		    width: 120,
+		    color: Colors.brown,
+		  ),
+		),
+		Padding(
+		  padding: const EdgeInsets.all(5.0),
+		  child: Container(
+		    height: 120 * 1.0, // total:
+		    width: 120,
+		    color: Colors.purple,
+		  ),
+		),
+		Expanded(
+		  child: Container(
+		    height: 120 * 0.5, // total:
+		    width: double.infinity,
+		    color: Colors.yellow,
+		  ),
+		),
+	      ],
+	    ),
+	    Row(
+	      children: [
+		Padding(
+		  padding: const EdgeInsets.all(5.0),
+		  child: Container(
+		    height: 120 * 1.0, // total:
+		    width: 120,
+		    color: Colors.blue,
+		  ),
+		),
+		Padding(
+		  padding: const EdgeInsets.all(5.0),
+		  child: Container(
+		    height: 120 * 1.0, // total:
+		    width: 120,
+		    color: Colors.red,
+		  ),
+		),
+		Expanded(
+		  child: Container(
+		    height: 120 * 0.5, // total:
+		    width: double.infinity,
+		    color: Colors.purple,
+		  ),
+		),
+	      ],
+	    )
+	  ],
+	),
+      ),
+    );
+  }
+}  
+1.1. Contador de carreiras
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Column(
+	  children: [
+	    ElevatedButton(
+	      onPressed: () {},
+	      child: Text('+'),
+	    ),
+	    Text('999'),
+	    /*
+	    Container(
+	      height: 80, // total:
+	      width: double.infinity,
+	      color: Colors.red,
+	    ),
+	    */
+	  ],
+	),
+      ),
+    );
+  }
+}  
+Implementando a lógica: contador aumenta com botão.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  int contador = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Column(
+	  children: [
+	    ElevatedButton(
+	      onPressed: () {
+		setState(() {
+		  contador++;
+		});
+	      },
+	      child: Text('+'),
+	    ),
+	    Text('$contador'),
+	    /*
+	    Container(
+	      height: 80, // total:
+	      width: double.infinity,
+	      color: Colors.red,
+	    ),
+	    */
+	  ],
+	),
+      ),
+    );
+  }
+}  
+Ajuste do visual:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  int contador = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Column(
+	  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+	  children: [
+	    ElevatedButton(
+	      onPressed: () {
+		setState(() {
+		  contador++;
+		});
+	      },
+	      child: Text('+'),
+	    ),
+	    Text('$contador'),
+	    Container(
+	      height: 80, // total:
+	      width: double.infinity,
+	      color: Colors.red,
+	    ),
+	  ],
+	),
+      ),
+    );
+  }
+}  
+Final:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  int contador = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Column(
+	  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+	  crossAxisAlignment: CrossAxisAlignment.start,
+	  children: [
+	    Padding(
+	      padding: const EdgeInsets.all(8.0),
+	      child: ElevatedButton(
+		onPressed: () {
+		  setState(() {
+		    contador++;
+		  });
+		},
+		child: const Text(
+		  '+',
+		  style: TextStyle(
+		    fontSize: 48,
+		  ),
+		),
+	      ),
+	    ),
+	    Center(
+	      child: Text(
+		'$contador',
+		style: TextStyle(
+		  fontSize: 48,
+		),
+	      ),
+	    ),
+	    SizedBox(
+	      height: 80,
+	    ),
+	  ],
+	),
+      ),
+    );
+  }
+}
+2. Aula 3
+2.1. Km/l
+Listando resultados com vetor:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  TextEditingController controlaKm = TextEditingController();
+  TextEditingController controlaL = TextEditingController();
+
+  List<String> resultados = [];
+  String linhas = '';
+
+  void adicionar() {
+    double km = double.parse(controlaKm.text);
+    double l = double.parse(controlaL.text);
+
+    double media = km / l;
+    resultados.add(media.toStringAsFixed(1));
+    mostraResultado();
+  }
+
+  void mostraResultado() {
+    linhas = '';
+
+    for (var item in resultados) {
+      linhas += item + '\n';
+    }
+    setState(() {
+      linhas += '...';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	appBar: AppBar(
+	  title: Text('Km/l'),
+	),
+	body: Column(
+	  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+	  crossAxisAlignment: CrossAxisAlignment.start,
+	  children: [
+	    Padding(
+	      padding: const EdgeInsets.all(8.0),
+	      child: TextField(
+		controller: controlaKm,
+		decoration: InputDecoration(
+		    border: OutlineInputBorder(), hintText: 'Digite os Km'),
+	      ),
+	    ),
+	    Padding(
+	      padding: const EdgeInsets.all(8.0),
+	      child: TextField(
+		controller: controlaL,
+		decoration: InputDecoration(
+		    border: OutlineInputBorder(), hintText: 'Digite os Litros'),
+	      ),
+	    ),
+	    Center(
+	      //padding: const EdgeInsets.all(8.0),
+	      child: ElevatedButton(
+		onPressed: () {
+		  adicionar();
+		},
+		child: const Text(
+		  'Salvar',
+		  style: TextStyle(
+		    fontSize: 32,
+		  ),
+		),
+	      ),
+	    ),
+	    Center(
+	      child: Text(
+		linhas,
+		style: TextStyle(
+		  fontSize: 48,
+		),
+	      ),
+	    ),
+	  ],
+	),
+      ),
+    );
+  }
+}  
+Agora usando ListView para não ter problemas com tamanho da tela:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  TextEditingController controlaKm = TextEditingController();
+  TextEditingController controlaL = TextEditingController();
+
+  List<String> resultados = [];
+  String linhas = '';
+
+  void adicionar() {
+    if (controlaKm.text.isEmpty || controlaL.text.isEmpty) return;
+
+    double km = double.parse(controlaKm.text);
+    double l = double.parse(controlaL.text);
+
+    double media = km / l;
+    setState(() {
+      resultados.add(media.toStringAsFixed(1));
+    });
+    controlaKm.text = '';
+    controlaL.text = '';
+    //mostraResultado();
+  }
+
+  void mostraResultado() {
+    linhas = '';
+
+    for (var item in resultados) {
+      linhas += item + '\n';
+    }
+    setState(() {
+      linhas += '...';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	appBar: AppBar(
+	  title: Text('Km/l'),
+	),
+	body: Column(
+	  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+	  crossAxisAlignment: CrossAxisAlignment.start,
+	  children: [
+	    Padding(
+	      padding: const EdgeInsets.all(8.0),
+	      child: TextField(
+		controller: controlaKm,
+		decoration: InputDecoration(
+		    border: OutlineInputBorder(), hintText: 'Digite os Km'),
+	      ),
+	    ),
+	    Padding(
+	      padding: const EdgeInsets.all(8.0),
+	      child: TextField(
+		controller: controlaL,
+		decoration: InputDecoration(
+		    border: OutlineInputBorder(), hintText: 'Digite os Litros'),
+	      ),
+	    ),
+	    Center(
+	      //padding: const EdgeInsets.all(8.0),
+	      child: ElevatedButton(
+		onPressed: () {
+		  adicionar();
+		},
+		child: const Text(
+		  'Salvar',
+		  style: TextStyle(
+		    fontSize: 32,
+		  ),
+		),
+	      ),
+	    ),
+	    Expanded(
+	      child: ListView.builder(
+		itemCount: resultados.length,
+		itemBuilder: (context, index) {
+		  return ListTile(title: Text(resultados[index]));
+		},
+	      ),
+	    ),
+	  ],
+	),
+      ),
+    );
+  }
+}  
+3. Aula 4
+3.1. Mostrando dados da Internet
+Iniciando com ID = 1
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+void main() {
+  runApp(MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  TextEditingController controlador = TextEditingController();
+
+  String texto = '...';
+
+  buscaTitulo(String id) async {
+    var response = await http.get(
+      Uri.parse('https://jsonplaceholder.typicode.com/albums/$id'),
+    );
+    var resultado = jsonDecode(response.body);
+    //print(resultado.runtimeType);
+    setState(() {
+      texto = 'Título: ${resultado['title']}';
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    buscaTitulo('1');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Center(
+	  child: Column(
+	    children: [
+	      TextField(
+		controller: controlador,
+		decoration: InputDecoration(
+		  border: OutlineInputBorder(),
+		  hintText: 'ID',
+		),
+	      ),
+	      ElevatedButton(
+		  onPressed: () {
+		    setState(() {
+		      texto = controlador.text;
+		      buscaTitulo(texto);
+		    });
+		  },
+		  child: Text('Verificar')),
+	      Text(texto),
+	    ],
+	  ),
+	),
+      ),
+    );
+  }
+}  
+Adicionando botões próximo e anterior:
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+void main() {
+  runApp(MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  int atual = 1;
+
+  String texto = '...';
+
+  buscaTitulo(String id) async {
+    var response = await http.get(
+      Uri.parse('https://jsonplaceholder.typicode.com/albums/$id'),
+    );
+    var resultado = jsonDecode(response.body);
+    //print(resultado.runtimeType);
+    setState(() {
+      texto = 'Título: ${resultado['title']}';
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    buscaTitulo(atual.toString());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Center(
+	  child: Column(
+	    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+	    children: [
+	      Row(
+		mainAxisAlignment: MainAxisAlignment.spaceAround,
+		children: [
+		  ElevatedButton(
+		    onPressed: () {
+		      setState(() {
+			atual = (atual > 1) ? atual - 1 : atual;
+			buscaTitulo(atual.toString());
+		      });
+		    },
+		    child: Text('Anterior'),
+		  ),
+		  ElevatedButton(
+		    onPressed: () {
+		      setState(() {
+			atual++;
+			buscaTitulo(atual.toString());
+		      });
+		    },
+		    child: Text('Próximo'),
+		  ),
+		],
+	      ),
+	      Text(
+		texto,
+		style: TextStyle(
+		  fontSize: 28,
+		),
+	      ),
+	    ],
+	  ),
+	),
+      ),
+    );
+  }
+}  
+3.2. Cotação do dólar
+Com o JSON viewer awesome podemos visualizar melhor um JSON e extrair os caminhos:
+
+USDBRL.high
+Que se tornará:
+
+vetor['USDBRL']['high'];
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+void main() {
+  runApp(MainApp());
+}
+
+class MainApp extends StatefulWidget {
+  MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  bool carregando = true;
+
+  String texto = '...';
+
+  buscaTitulo() async {
+    setState(() {
+      carregando = true;
+    });
+    var response = await http.get(
+      Uri.parse('https://economia.awesomeapi.com.br/last/USD-BRL'),
+    );
+    var resultado = jsonDecode(response.body);
+    //print(resultado.runtimeType);
+    setState(() {
+      texto =
+	  'Maior: ${resultado['USDBRL']['high']} Menor: ${resultado['USDBRL']['low']}';
+      carregando = false;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    buscaTitulo();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+	body: Center(
+	  child: Column(
+	    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+	    children: [
+	      ElevatedButton(
+		onPressed: () {
+		  buscaTitulo();
+		},
+		child: Text('Carregar'),
+	      ),
+	      (carregando)
+		  ? CircularProgressIndicator()
+		  : Text(
+		      texto,
+		      style: TextStyle(
+			fontSize: 28,
+		      ),
+		    ),
+	    ],
+	  ),
+	),
+      ),
+    );
+  }
+}  
+4. Pacote html
+O pacote html permite extrair texto de uma página HTML (parser).
+
+import 'package:html/parser.dart' as parser; // Alias para evitar conflitos
+import 'package:html/dom.dart';
+
+void main() {
+  // 1. Simulação do HTML bruto que viria da Wikipedia
+  // Note que ele contém tags como <b> (negrito) misturadas ao texto.
+  String wikipediaHtml = """
+    <html>
+      <body>
+	<h1>Chole bhature</h1>
+	<div id="content">
+	   <p class="resumo">
+	     <b>Chole bhature</b> is a food dish popular in the Northern areas of the Indian subcontinent.
+	   </p>
+	   <p>
+	     It is a combination of chana masala and bhatura/puri.
+	   </p>
+	</div>
+      </body>
+    </html>
+  """;
+
+  // 2. O método parse() transforma a String gigante em um objeto navegável (DOM)
+  Document document = parser.parse(wikipediaHtml);
+
+  // 3. Buscando o primeiro parágrafo
+  // O seletor 'p' busca a primeira tag <p> que encontrar no documento.
+  Element? paragraphElement = document.querySelector('p');
+
+  if (paragraphElement != null) {
+    // 4. A propriedade .text remove automaticamente as tags internas (como <b>)
+    // e retorna apenas o conteúdo textual.
+    String cleanText = paragraphElement.text;
+
+    print('--- Texto Extraído ---');
+    print(cleanText); 
+
+    // TODO: use .split(' ') para criar os botões
+  } else {
+    print('Nenhum parágrafo encontrado.');
+  }
+}  
+5. Prática
+A. Crie um app Flutter que recebe o código fonte de uma notícia no G1 e mostra apenas o título da notícia usando html.parse().
+
+6. Split
+Podemos usar o método split para separar palavras de acordo com um separador.
+
+void main() {
+  // Frase simulando o texto vindo da Wikipedia
+  String texto = "Chole bhature is a popular dish";
+
+  // O método .split(' ') quebra a string toda vez que encontra um espaço em branco
+  List<String> palavras = texto.split(' ');
+
+  print(palavras);
+
+  // Iterando para mostrar como você faria para criar os botões
+  for (var palavra in palavras) {
+    print("Separado: $palavra");
+  }
+}
+Podemos usar split também para analisar arquivos CSV:
+
+void main() {
+  // 1. Simulando o conteúdo de um arquivo CSV
+  // Formato: Nome,Nota1,Nota2
+  String csvData = """
+Nome,Nota1,Nota2
+Alice,8.5,9.0
+Bruno,7.0,6.5
+Carla,10,9.5
+Daniel,5.5,6.0
+""";
+
+  // 2. Primeiro, separamos o texto em LINHAS
+  // O trim() remove espaços vazios no início e fim do arquivo antes de dividir
+  List<String> linhas = csvData.trim().split('\n');
+
+  print('--- Boletim Escolar ---');
+
+  // 3. Iteramos sobre as linhas.
+  // Começamos de i = 1 para pular o cabeçalho ("Nome,Nota1,Nota2")
+  for (int i = 1; i < linhas.length; i++) {
+    String linhaAtual = linhas[i];
+
+    // 4. Agora separamos as COLUNAS usando a vírgula
+    List<String> colunas = linhaAtual.split(',');
+
+    // O resultado de colunas será algo como: ['Alice', '8.5', '9.0']
+    String nome = colunas[0];
+
+    // 5. Convertendo as notas de String para Double para fazer conta
+    double nota1 = double.parse(colunas[1]);
+    double nota2 = double.parse(colunas[2]);
+
+    // 6. Cálculo da média
+    double media = (nota1 + nota2) / 2;
+
+    // 7. Exibindo o resultado formatado (1 casa decimal)
+    print('Aluno: $nome | Média: ${media.toStringAsFixed(1)}');
+  }
+}
+7. Prática
+B. Crie uma app que recebe uma linha do histórico no SUAP e mostra somente: Nome da disciplina, Nota, Frequência e se o aluno foi:
+
+Reprovado
+Reprovado por falta (< 75% de frequência)
+Aprovado
+8. Wrap
+O Widget Wrap permite adicionar os botões e se não houver mais espaço ele automaticamente envia o item para a linha de baixo.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(home: WikipediaPage()));
+}
+
+class WikipediaPage extends StatelessWidget {
+  // 1. O texto que viria do seu parser HTML
+  final String textoWikipedia = 
+      "Chole bhature is a food dish popular in the Northern areas of the Indian subcontinent";
+
+  @override
+  Widget build(BuildContext context) {
+    // 2. Transformando a frase em uma lista de palavras
+    List<String> palavras = textoWikipedia.split(' ');
+
+    return Scaffold(
+      appBar: AppBar(title: Text("English with Wikipedia")),
+      body: Padding(
+	padding: const EdgeInsets.all(16.0),
+
+	// 3. O WIDGET WRAP
+	child: Wrap(
+	  spacing: 8.0, // Espaço horizontal entre as palavras
+	  runSpacing: 4.0, // Espaço vertical entre as linhas
+	  children: palavras.map((palavra) {
+
+	    // 4. Criando um botão para cada palavra
+	    return ActionChip(
+	      label: Text(palavra),
+	      onPressed: () {
+		// Aqui você chamaria a API do dicionário
+		print("Buscando definição para: $palavra");
+	      },
+	      backgroundColor: Colors.blue[50],
+	    );
+
+	  }).toList(),
+	),
+      ),
+    );
+  }
+}
+9. Prática
+C. Crie um app que mostra uma porção de operações matemáticas de multiplicação e permite que o usuário clique e apague a operação quando considerar que já resolveu mentalmente a operação. Mostre o resultado da operação clicada para que ele possa conferir sua resposta.
+
+10. Interações
+Podemos usar ActionChip ou GestureDetector para permitir a interação do usuário com o texto, mas de maneira diferente:
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(const ChipApp());
+
+class ChipApp extends StatelessWidget {
+  const ChipApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(colorSchemeSeed: const Color(0xff6750a4)),
+      home: const ActionChipExample(),
+    );
+  }
+}
+
+class ActionChipExample extends StatefulWidget {
+  const ActionChipExample({super.key});
+
+  @override
+  State<ActionChipExample> createState() => _ActionChipExampleState();
+}
+
+class _ActionChipExampleState extends State<ActionChipExample> {
+  bool favorite = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('ActionChip Sample')),
+      body: Center(
+	child: ActionChip(
+	  avatar: Icon(favorite ? Icons.favorite : Icons.favorite_border),
+	  label: const Text('Save to favorites'),
+	  onPressed: () {
+	    setState(() {
+	      favorite = !favorite;
+	    });
+	  },
+	),
+      ),
+    );
+  }
+}
+GestureDetector:
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MinimalTapApp());
+
+class MinimalTapApp extends StatelessWidget {
+  const MinimalTapApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+	body: Center(
+	  child: SimpleWordTapper(word: 'definition'),
+	),
+      ),
+    );
+  }
+}
+
+class SimpleWordTapper extends StatelessWidget {
+  final String word;
+
+  const SimpleWordTapper({required this.word, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // 1. O GestureDetector envolve o widget que você quer tornar interativo.
+    return GestureDetector(
+      // 2. onTap é o callback chamado quando o usuário toca.
+      onTap: () {
+	// Ação: Abrir a página de definição
+	print('A palavra "$word" foi clicada.');
+      },
+      // 3. O widget visual (child) é o texto da palavra.
+      child: Text(
+	word,
+	// Adicionando um estilo visual sutil (sublinhado) para que o usuário saiba que é clicável.
+	style: const TextStyle(
+	  color: Colors.blue,
+	  decoration: TextDecoration.underline,
+	),
+      ),
+    );
+  }
+}
+Vantagem do GestureDetector: outros métodos de interação onTap, onLongPress…
+
+11. Exercício English
+https://youtu.be/r1nd8MM04c0
+
+Vamos criar uma app que ajuda a aprender Inglês com wikipedia e APIs de dicionário como https://dictionaryapi.dev.
+O usuário deve colar o link para algo de seu interesse na wikipedia, exemplo: https://en.wikipedia.org/wiki/Chole_bhature (atenção para en = english). A app extrai o texto e mostra o primeiro parágrafo. Cada palavra se torna um botão que leva para a página da definição da palavra em Inglês, exemplo aperta "dish" e vê a definição dada por https://api.dictionaryapi.dev/api/v2/entries/en/dish.
+Além de ver a definição, página Definição, permita tocar o audio encontrado em https://api.dictionaryapi.dev/api/v2/entries/en/dish exemplo: https://api.dictionaryapi.dev/media/pronunciations/en/dish-us.mp3
+O usuário deve poder marcar se compreendeu a palavra ou não, e voltar para o texto. Se a palavra foi compreendida ela não deve mais ser um botão clicável no texto.
+Permita que o usuário acesse a página Palavras onde ficam listadas as palavras que ele já compreendeu e pode retirar a marcação de palavra compreendida.
+Tente usar https://pub.dev/packages/flutter_launcher_icons para alterar o ícone da app no Android.
+12. Envio
+https://forms.gle/mrbunBMFU2Q73LFW6
